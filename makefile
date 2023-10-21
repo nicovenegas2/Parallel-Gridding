@@ -17,7 +17,7 @@ Matrix.o: Matrix.cc Matrix.h
 test: program.exe
 	make
 	clear
-	./program.exe -i ese.csv -o grid -d 0.5 -N 8 -c 3 -t 4
+	./program.exe -i ese.csv -o grid -d 0.003 -N 2048 -c 100 -t 4
 
 
 clean:

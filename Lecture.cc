@@ -68,6 +68,9 @@ void Lecture::write(string filename, Matrix &matrix){
 }
 
 bool Lecture::canRead(){
+    // if (file.eof()) {
+    //     _Accept(read);
+    // }
     return !file.eof();
 }
 

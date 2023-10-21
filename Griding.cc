@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
     // Forma 1
     start = clock();
     for (int i = 0; i < taskNum; i++){
-        tasks[i] = new GridTaskV1(lecture, matrix, deltaU, N);
+        tasks[i] = new GridTaskV1(lecture, matrix, deltaU, N,i);
     }
 
     for (int i = 0; i < taskNum; i++){

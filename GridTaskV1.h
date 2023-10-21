@@ -16,13 +16,13 @@ _Task GridTaskV1 {
     Lecture &lecture;
     Matrix &matrix;
     float deltaU;
-    int N;
+    int N,id;
     float** gridR, **gridI, **gridW;
     string content = "";
     void main();
 
     public:
-    GridTaskV1(Lecture &lecture, Matrix &matrix, float deltaX, int N);
+    GridTaskV1(Lecture &lecture, Matrix &matrix, float deltaX, int N, int id);
     void printGrid();
     int getN();
     string getContent();
