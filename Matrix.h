@@ -22,6 +22,7 @@ _Mutex _Coroutine Matrix {
     ~Matrix();
     void add(int i,int j,float r,float im,float w);
     void plusMatrix(float **gridR, float **gridI, float **gridW);
+    void normalize();
 
     float getReal(int i, int j);
     float getImaginary(int i, int j);

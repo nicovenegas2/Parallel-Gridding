@@ -4,7 +4,7 @@
 #include "Lecture.h"
 using namespace std;
 
-Lecture::Lecture(string filename) {
+Lecture::Lecture(string filename, int chunkSize) : chunkSize(chunkSize) {
     file.open(filename.c_str(), ios::in);
     if (file.is_open()) {
         cout << "File opened successfully" << endl;
@@ -20,12 +20,12 @@ void Lecture::main() {
     int channel;
     file.open("Lecture.txt", ios::in);
     if (file.is_open()) {
-        while (getline(file, line) && !file.eof()) {
+        while (getline(file, line)) {
             if (!file.eof()) {
                 content += line;
                 countLines++;
             }
-            if(countLines != chunkSize)
+            if(countLines < chunkSize)
                 content += "\n";
             if(countLines == chunkSize || file.eof()){
                 suspend();
@@ -33,6 +33,7 @@ void Lecture::main() {
                 content = "";
             }
         }
+        suspend();
         file.close();
     }
     else {
@@ -68,9 +69,6 @@ void Lecture::write(string filename, Matrix &matrix){
 }
 
 bool Lecture::canRead(){
-    // if (file.eof()) {
-    //     _Accept(read);
-    // }
     return !file.eof();
 }
 

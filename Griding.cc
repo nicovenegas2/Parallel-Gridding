@@ -46,37 +46,48 @@ int main(int argc, char* argv[]){
 
 
 
-    Lecture lecture(inputFile);
+    Lecture lecture(inputFile, chunkSize);
     GridTaskV1 *tasks[taskNum];
     Matrix matrix(N);
     string lines;
 
     // Forma 1
     start = clock();
+
+    // 1. Crear tareas
     for (int i = 0; i < taskNum; i++){
         tasks[i] = new GridTaskV1(lecture, matrix, deltaU, N,i);
     }
 
+    // 2. Esperar a que terminen
     for (int i = 0; i < taskNum; i++){
         delete tasks[i];
     }
+
+    // 3. Normalizar
+    matrix.normalize();
     end = clock();
-    lecture.write(outputFile, matrix);
     cout << "Tiempo de ejecucion Forma 1: " << (end - start) / (double)CLOCKS_PER_SEC << endl;
+    lecture.write(outputFile, matrix);
 
     // Forma 2
     start = clock();
     GridTaskV2 *tasks2[taskNum];
     Matrix matrix2(N);
+    Lecture lecture2(inputFile, chunkSize);
+    // 1. Crear tareas
     for (int i = 0; i < taskNum; i++){
-        tasks2[i] = new GridTaskV2(lecture, matrix2, deltaU, N);
+        tasks2[i] = new GridTaskV2(lecture2, matrix2, deltaU, N);
     }
 
+    // 2. Esperar a que terminen
     for (int i = 0; i < taskNum; i++){
         delete tasks2[i];
     }
+    // 3. Normalizar
+    matrix2.normalize();
     end = clock();
     cout << "Tiempo de ejecucion Forma 2: " << (end - start) / (double)CLOCKS_PER_SEC << endl;
-
+    cout << "Fin del programa" << endl;
     exit(0);
 }

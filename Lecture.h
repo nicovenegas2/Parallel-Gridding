@@ -5,9 +5,9 @@
 #include <fstream>
 #include <iostream>
 #include "Matrix.h"
+#include <uC++.h>
 using namespace std;
 
-#define CHUNK_SIZE 3
 
 _Mutex _Coroutine Lecture {
     private:
@@ -20,10 +20,10 @@ _Mutex _Coroutine Lecture {
 
     public:
     Lecture();
-    Lecture(string filename);
+    Lecture(string filename, int chunkSize);
     ~Lecture();
     string read();
-    bool canRead();
+    _Nomutex bool canRead();
     void write(string filename, Matrix &matrix);
 };
 

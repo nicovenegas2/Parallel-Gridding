@@ -8,7 +8,6 @@ void GridTaskV1::main(){
     string line;
     while(lecture.canRead()){
         content = lecture.read();
-        cout << "Task " << id << " reading" << "**************************" << endl;
         cout << content << endl;
         std::stringstream ss(content);
 
@@ -28,15 +27,12 @@ void GridTaskV1::main(){
             imag = stof(imagStr);
             weight = stof(weightStr);
             freq = stof(freqStr);
-            cout << "|u: " << u << " v: " << v;
             // Transformar a long. onda
             u = u * (freq / SPEED_LIGHT);
             v = v * (freq / SPEED_LIGHT);
             // Calcular punto en grilla y redondear
             int i = round((u / deltaU) + (N / 2));
             int j = round((v / deltaU) + (N / 2));
-            cout << "|-->|" << i << "," << j << "|" << endl;
-
             // Sumar a las grillas
             if (i < 0 || i >= N || j < 0 || j >= N){
                 continue;
@@ -46,20 +42,9 @@ void GridTaskV1::main(){
             gridW[i][j] += weight;
         }
 
-        for(int i = 0; i < N; i++){
-            for(int j = 0; j < N; j++){
-                if (gridW[i][j] == 0){
-                    gridR[i][j] = 0;
-                    gridI[i][j] = 0;
-                    continue;
-                }
-                gridR[i][j] = gridR[i][j] / gridW[i][j];
-                gridI[i][j] = gridI[i][j] / gridW[i][j];
-            }
-        }
-        matrix.plusMatrix(gridR, gridI, gridW);
-        cout << "********************************" << endl;
+        // cout << "********************************" << endl;
     }
+        matrix.plusMatrix(gridR, gridI, gridW);
 }
 
 GridTaskV1::GridTaskV1(Lecture &lecture, Matrix &matrix, float deltaX, int N, int id) : lecture(lecture), matrix(matrix), N(N), id(id) {

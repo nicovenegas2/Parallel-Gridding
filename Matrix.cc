@@ -67,6 +67,19 @@ void Matrix::plusMatrix(float **gridR, float **gridI, float **gridW){
     }
 }
 
+void Matrix::normalize(){
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < N; j++){
+            if(gridW[i][j] == 0){
+                continue;
+            }
+
+            gridR[i][j] = gridR[i][j] / gridW[i][j];
+            gridI[i][j] = gridI[i][j] / gridW[i][j];
+        }
+    }
+}
+
 
 float Matrix::getReal(int i, int j){
     return gridR[i][j];
